@@ -20,3 +20,38 @@ This lab provides a practical implementation of database migration using AWS DMS
 - Handle common migration challenges and errors
 
 ## 🏗️ Architecture
+
+
+## 🚀 Prerequisites
+
+- AWS Account with appropriate permissions
+- AWS CLI installed and configured
+- Terraform (v1.0+) or AWS CloudFormation experience
+- Basic understanding of:
+  - Relational databases
+  - AWS networking (VPC, subnets, security groups)
+  - SQL queries
+
+## 📦 Supported Database Engines
+
+**Source Databases:**
+- MySQL (5.6, 5.7, 8.0)
+- PostgreSQL (9.4+)
+- Oracle (11g+)
+- SQL Server (2012+)
+
+**Target Databases:**
+- Amazon RDS (MySQL, PostgreSQL, Oracle, SQL Server)
+- Amazon Aurora
+- Amazon Redshift
+- Amazon S3
+
+## 🛠️ Installation & Setup
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/yourusername/aws-dms-migration-lab.git
+cd aws-dms-migration-lab
+```
+aws configure
+# Enter your AWS Access Key ID, Secret Access Key, and default region
