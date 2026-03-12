@@ -55,3 +55,46 @@ cd aws-dms-migration-lab
 ```
 aws configure
 # Enter your AWS Access Key ID, Secret Access Key, and default region
+cd terraform
+terraform init
+terraform plan
+terraform apply -auto-approve
+aws cloudformation create-stack \
+  --stack-name dms-migration-lab \
+  --template-body file://cloudformation/template.yaml \
+  --parameters ParameterKey=KeyName,ParameterValue=your-key-pair
+
+  # Run the setup script to create sample data
+mysql -h source-db-endpoint -u admin -p < scripts/source-db-setup.sql
+
+# Create replication instance, endpoints, and tasks
+python scripts/create-dms-resources.py
+
+aws-dms-migration-lab/
+├── terraform/
+│   ├── main.tf                 # Main Terraform configuration
+│   ├── variables.tf             # Variable definitions
+│   ├── outputs.tf               # Output definitions
+│   └── modules/
+│       ├── vpc/                 # VPC configuration
+│       ├── rds/                  # RDS instances
+│       └── dms/                  # DMS resources
+├── cloudformation/
+│   ├── template.yaml            # CloudFormation template
+│   └── parameters.json          # Stack parameters
+├── scripts/
+│   ├── source-db-setup.sql      # Source database initialization
+│   ├── verify-migration.sql      # Migration verification queries
+│   ├── create-dms-resources.py   # DMS setup automation
+│   └── monitoring/               # Monitoring scripts
+├── dms-config/
+│   ├── endpoints.json            # Endpoint configurations
+│   ├── replication-task.json     # Task configurations
+│   └── mapping-rules/            # Table mapping rules
+├── docs/
+│   ├── architecture.md           # Architecture deep dive
+│   ├── troubleshooting.md        # Common issues and solutions
+│   └── best-practices.md         # DMS best practices
+└── test-data/
+    ├── sample-schema.sql         # Sample database schema
+    └── sample-data.csv           # Test data files
