@@ -98,4 +98,13 @@ aws-dms-migration-lab/
 └── test-data/
     ├── sample-schema.sql         # Sample database schema
     └── sample-data.csv           # Test data files
-yes
+**Source Databases:**
+- MySQL (5.6, 5.7, 8.0)
+- PostgreSQL (9.4+)
+- Oracle (11g+)
+- SQL Server (2012+)
+- **Source Databases:**
+- MySQL (5.6, 5.7, 8.0)
+- PostgreSQL (9.4+)
+- Oracle (11g+)
+- SQL Server (2012+)
