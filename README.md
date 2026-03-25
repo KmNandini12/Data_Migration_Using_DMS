@@ -65,6 +65,9 @@ Task Type Re-Alignment: Re-created the DMS task from scratch to ensure the "Ongo
 
 Initial Load: Verified that the students table and seed data appeared in RDS immediately after the "Starting" phase.
 
+## Conclusion
+This project demonstrates the transition from a traditional, high-maintenance database model to a modern, managed cloud environment. By resolving the CDC configuration issues, I successfully eliminated the need for a maintenance window, proving that data consistency can be maintained in real-time during a live cutover.
+
 
 Live Sync Check: Performed a INSERT INTO students (name) VALUES ('Migration_Success_Test'); on the EC2 instance.
 
