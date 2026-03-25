@@ -38,3 +38,36 @@ LOB Mode: Full LOB mode to ensure large data objects were handled correctly.
 
 
 Table Mapping: Targeted the my_source_db schema with a wildcard % to include all tables.
+
+## 🛠️ Troubleshooting: Solving the "Backup but No CDC" Failure
+### The Challenge
+Initially, the DMS task would successfully complete the Full Load (the "backup" of existing data) but would fail to start or execute the CDC (real-time changes). The task would either stop or show a "Running with errors" status because it couldn't see ongoing transactions.
+
+### The Root Cause
+The failure occurred because the Binary Logs on the EC2 MySQL source were either disabled or incorrectly formatted. Without ROW-level logging, DMS cannot translate binary log events into SQL statements for the target database.
+
+### The Resolution
+I overcame this technical hurdle through a four-pronged approach:
+
+
+Binary Log Enablement: Re-verified and corrected the mysqld.cnf settings, ensuring server-id was unique and binlog_format was strictly set to ROW.
+
+
+Service Synchronization: Performed a hard restart of the MySQL service (sudo systemctl restart mysql) to flush the configuration changes.
+
+
+Endpoint Refinement: Switched the source endpoint from a public DNS to the Private IP (172.31.18.181) to reduce latency and networking "handshake" jitter between DMS and EC2.
+
+
+Task Type Re-Alignment: Re-created the DMS task from scratch to ensure the "Ongoing Changes" flag was properly registered with the newly enabled binary logs.
+
+##  Data Verification
+
+Initial Load: Verified that the students table and seed data appeared in RDS immediately after the "Starting" phase.
+
+
+Live Sync Check: Performed a INSERT INTO students (name) VALUES ('Migration_Success_Test'); on the EC2 instance.
+
+
+Result: Verified that the record appeared in the RDS Target within seconds, confirming a successful CDC handshake.
+
