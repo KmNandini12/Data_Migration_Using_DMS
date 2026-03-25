@@ -39,7 +39,7 @@ LOB Mode: Full LOB mode to ensure large data objects were handled correctly.
 
 Table Mapping: Targeted the my_source_db schema with a wildcard % to include all tables.
 
-## 🛠️ Troubleshooting: Solving the "Backup but No CDC" Failure
+##  Troubleshooting: Solving the "Backup but No CDC" Failure
 ### The Challenge
 Initially, the DMS task would successfully complete the Full Load (the "backup" of existing data) but would fail to start or execute the CDC (real-time changes). The task would either stop or show a "Running with errors" status because it couldn't see ongoing transactions.
 
