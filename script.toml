@@ -1,0 +1,32 @@
+[mysqld]
+# --- Core Network Settings ---
+user            = mysql
+bind-address    = 0.0.0.0
+mysqlx-bind-address = 0.0.0.0
+key_buffer_size = 16M
+myisam-recover-options = BACKUP
+
+# --- Connection Settings ---
+port            = 3306
+datadir         = /var/lib/mysql
+socket          = /var/run/mysqld/mysqld.sock
+
+# --- DMS / CDC Requirements ---
+# server-id must be unique (use 1 for source)
+server-id                = 1
+# log_bin is required for AWS DMS to read changes
+log_bin                  = /var/log/mysql/mysql-bin.log
+# binlog_format MUST be ROW for DMS
+binlog_format            = ROW
+# Required to prevent checksum errors in DMS
+binlog_checksum          = NONE
+# Retention: Ensure logs don't fill disk but stay long enough for DMS
+binlog_expire_logs_seconds = 604800
+max_binlog_size          = 100M
+
+# --- Logging ---
+log_error = /var/log/mysql/error.log
+
+# --- Security & Compatibility ---
+# Disabling symbolic-links is recommended to prevent various security risks
+symbolic-links=0
