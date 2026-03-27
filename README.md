@@ -74,3 +74,4 @@ Live Sync Check: Performed a INSERT INTO students (name) VALUES ('Migration_Succ
 
 Result: Verified that the record appeared in the RDS Target within seconds, confirming a successful CDC handshake.
 
+
