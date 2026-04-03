@@ -3,6 +3,7 @@
 This repository details the end-to-end implementation of a database migration strategy moving from a self-managed MySQL instance on Amazon EC2 to a high-availability Amazon RDS environment. By utilizing AWS Database Migration Service (DMS), the project achieves seamless data transition using a Full Load + Change Data Capture (CDC) approach, ensuring zero data loss and minimal application downtime.
 
 ## System Architecture
+![Architecture Diagram](https://github.com/KmNandini12/Data_Migration_Using_DMS/blob/99562de0b3d1e3984c3e60b237f5f98fa2e87e59/screenshots/Architecture.png)
 The architecture is designed to bridge the gap between legacy on-premises-style deployments and modern cloud-managed database services.Source: MySQL 8.0.45 (Community Server) hosted on Ubuntu 24.04 LTS (Amazon EC2).Target: Managed Amazon RDS (MySQL Engine).Orchestration: AWS DMS Replication Instance (t3.medium).Security: Multi-layered Security Groups (SGs) restricting traffic to the DMS Replication Instance and internal VPC CIDRs.
 
 ##  Objectives & Key ResultsSource Hardening
