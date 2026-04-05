@@ -93,5 +93,28 @@ sudo apt install mysql-server -y
 
 # Verify installation
 mysql --versionied that the record appeared in the RDS Target within seconds, confirming a successful CDC handshake.
+```
+## Conclusion
+This project successfully demonstrated a production-ready migration strategy from a self-managed MySQL database on EC2 to a fully managed Amazon RDS instance using AWS DMS with CDC.
 
+Key Takeaways:
 
+Zero-downtime migrations are achievable using the Full Load + CDC approach
+
+AWS DMS simplifies heterogeneous and homogeneous database migrations
+
+CDC ensures real-time data consistency during and after migration
+
+Proper network configuration (security groups) is critical for connectivity
+
+Primary keys are mandatory for CDC to function correctly
+
+This architecture can be extended to:
+
+Cross-account migrations
+
+Cross-region replication
+
+Migration from on-premise databases to AWS
+
+Database consolidation or split scenarios
