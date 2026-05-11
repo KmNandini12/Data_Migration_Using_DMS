@@ -110,7 +110,7 @@ Proper network configuration (security groups) is critical for connectivity
 Primary keys are mandatory for CDC to function correctly
 
 This architecture can be extended to:
-
+jj
 Cross-account migrations
 
 
